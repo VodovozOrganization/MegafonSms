@@ -41,7 +41,8 @@ namespace MegafonSmsAPI
 
 			var httpResponse = await _httpClient.PostAsync(url, httpContent);
 			var responseContent = await httpResponse.Content.ReadAsStringAsync();
-			return JsonConvert.DeserializeObject<SendResult>(responseContent);
+			var response = JsonConvert.DeserializeObject<Response>(responseContent);
+			return response.Result;
 		}
 		public SendResult SendSms(SmsMessage message)
 		{
